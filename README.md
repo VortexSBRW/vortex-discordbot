@@ -7,3 +7,4 @@ To-Do:
 - [x] Ticket command
 - [ ] Help command (y dis shit no work)
 - [ ] Role command (.iam ...)
+- [ ] Ping New Players /w Info
