@@ -27,7 +27,7 @@ abstract class Command constructor(name: String, aliases: List<String>, help: St
     }
 
     protected fun commandArgs(s: String): List<String> {
-        return s.split(" ")
+        return s.split(" ", ignoreCase = true, limit = 2)
     }
 
     protected fun commandArgs(m: Message): List<String> {

@@ -1,6 +1,7 @@
 package net.vortex.discordbot.commands
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
+import net.dv8tion.jda.core.exceptions.HierarchyException
 
 class IamCommand: Command("!iam", listOf("!role"), "Assigns a certain role to an user.") {
 
@@ -12,6 +13,8 @@ class IamCommand: Command("!iam", listOf("!role"), "Assigns a certain role to an
                 e.textChannel.sendMessage("${e.author.asMention} You have been given the **$role** role.").queue()
             } catch (ex: IndexOutOfBoundsException){
                 e.textChannel.sendMessage("${e.author.asMention} I'm sorry, the role **$role** does not exist.").queue()
+            } catch (ex: HierarchyException){
+                e.textChannel.sendMessage("${e.author.asMention} You don't have permission to get this role.").queue()
             }
         } else {
             e.textChannel.sendMessage("${e.author.asMention} Invalid number of arguments.").queue()
