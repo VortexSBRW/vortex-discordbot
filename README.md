@@ -5,6 +5,10 @@ To-Do:
 
 - [x] Status command
 - [x] Ticket command
-- [ ] Help command (y dis shit no work)
-- [ ] Role command (Probably like .iam)
+- [x] Help command (y dis shit no work)
+- [x] Role command (Probably like .iam)
 - [ ] Ping New Players /w Info
+
+Bugs:
+
+- [ ] Fix role command bug (No spaces in role name allowed)
