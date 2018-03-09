@@ -12,12 +12,16 @@ class TicketCommand : Command("!ticket", listOf("!play"), "Generates a ticket fo
 
     override fun onCommand(e: MessageReceivedEvent, args: List<String>) {
         val name = e.author.name
-        val checkQuery = sqlUtil.executeQuery("SELECT * FROM SOAPBOX.INVITE_TICKET WHERE DISCORD_NAME = '$name'")
+        val stmt = sqlUtil.getConnection()?.prepareStatement("SELECT * FROM SOAPBOX.INVITE_TICKET WHERE DISCORD_NAME = ?")
+        stmt?.setString(1, name)
+        val checkQuery = stmt?.executeQuery()
 
         if (checkQuery?.next() == false){
             val ticket = "${configUtil.getProperty("ticket.prefix")}-${Date().time}"
-            val ticketQuery = "INSERT INTO SOAPBOX.INVITE_TICKET (DISCORD_NAME, TICKET) VALUES ('$name', '$ticket')"
-            sqlUtil.executeQuery(ticketQuery)
+            val ticketStmt = sqlUtil.getConnection()?.prepareStatement("INSERT INTO SOAPBOX.INVITE_TICKET (DISCORD_NAME, TICKET) VALUES (?, ?)")
+            ticketStmt?.setString(1, name)
+            ticketStmt?.setString(2, ticket)
+            val ticketQuery = ticketStmt?.executeQuery()
             e.textChannel.sendMessage("${e.author.asMention} Hey there! I've sent you a private message with your ticket.").queue()
             e.member.user.openPrivateChannel().
                     queue({channel -> channel.sendMessage("Welcome to Vortex! \nYour ticket is $ticket.").queue()})
