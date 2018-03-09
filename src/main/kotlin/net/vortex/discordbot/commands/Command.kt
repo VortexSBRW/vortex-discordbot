@@ -23,7 +23,7 @@ abstract class Command constructor(name: String, aliases: List<String>, help: St
     }
 
     protected fun contains(m: Message): Boolean {
-        return aliases.contains(commandArgs(m).get(0)) || name.contains(commandArgs(m).get(0))
+        return aliases.equals(commandArgs(m).get(0)) || name.equals(commandArgs(m).get(0))
     }
 
     protected fun commandArgs(s: String): List<String> {
