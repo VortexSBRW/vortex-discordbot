@@ -11,4 +11,4 @@ To-Do:
 
 Bugs:
 
-- [ ] Fix role command bug (No spaces in role name allowed)
+- [x] Fix role command bug (No spaces in role name allowed)
