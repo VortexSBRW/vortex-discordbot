@@ -5,9 +5,9 @@ To-Do:
 
 - [x] Status command
 - [x] Ticket command
-- [x] Help command (y dis shit no work)
+- [x] Help command 
 - [x] Role command (Probably like .iam)
-- [ ] Ping New Players /w Info
+- [x] Ping New Players /w Info
 
 Bugs:
 
